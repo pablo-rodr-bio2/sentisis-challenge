@@ -60,7 +60,7 @@ function MainTable({ tickets }: Props) {
   };
 
   return (
-    <div>
+    <div className="flex items-center justify-center min-h-screen">
       <MainTableContent
         table={table}
         onRowClick={handleRowClick}

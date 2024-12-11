@@ -29,7 +29,7 @@ function MainTableContent({ table, onRowClick } : Props) {
             <tr 
               key={row.id} 
               onClick={() => onRowClick(row.original)} 
-              style={{ cursor: "pointer"}}
+              className="cursor-pointer"
             >
               {row.getVisibleCells().map(cell => (
                 <td key={cell.id}>

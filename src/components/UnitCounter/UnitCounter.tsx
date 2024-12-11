@@ -22,7 +22,7 @@ function UnitCounter({ ticketId, unit, onUpdate }: Props) {
   }
 
   return (
-    <div style={{ display: "flex", gap: "0.5rem"}}>
+    <div className="flex gap-2">
       <Button onClick={handlePlus}>+</Button>
 
       <Input type="number" size={10} readOnly value={unit} />
