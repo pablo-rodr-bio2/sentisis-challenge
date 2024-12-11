@@ -1,5 +1,7 @@
-import { flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import { useMemo } from "react";
+import MainTableContent from "@/components/MainTableContent/MainTableContent";
+import TicketDialog from "@/components/TicketDialog/TicketDialog";
+import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
+import { useMemo, useState } from "react";
 import useUnits from "../../hooks/useUnits";
 import { Ticket } from "../../types/ticket";
 import UnitCounter from "../UnitCounter/UnitCounter";
@@ -10,6 +12,7 @@ type Props = {
 
 function MainTable({ tickets }: Props) {
   const { units, updateUnit } = useUnits()
+  const [ selectedTicket, setSelectedTicket ] = useState<Ticket | null>(null);
 
   const columns = useMemo(
     () => [
@@ -24,7 +27,6 @@ function MainTable({ tickets }: Props) {
       {
         header: "Release Date",
         accessorKey: "releaseDate",
-        enableSorting: true,
       },
       {
         header: "Unit",
@@ -54,46 +56,24 @@ function MainTable({ tickets }: Props) {
   })
 
   const handleRowClick = (ticket: Ticket) => {
-    alert(JSON.stringify(ticket, null, 2));
+    setSelectedTicket(ticket);
   };
 
   return (
     <div>
-      <table>
-        <thead>
-          {table.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
-                <th key={header.id}>
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext()
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        
-        <tbody>
-          {table.getRowModel().rows.map(row => (
-            <tr 
-              key={row.id} 
-              onClick={() => handleRowClick(row.original)} 
-              style={{ cursor: "pointer"}}
-            >
-              {row.getVisibleCells().map(cell => (
-                <td key={cell.id}>
-                  {flexRender(
-                    cell.column.columnDef.cell, 
-                    cell.getContext()
-                  )}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <MainTableContent
+        table={table}
+        onRowClick={handleRowClick}
+      />
+
+      {selectedTicket && (
+        <TicketDialog 
+          ticket={selectedTicket}
+          onChange={setSelectedTicket}
+          unit={units[selectedTicket.id] || 0}
+          updateUnit={updateUnit}
+        />
+      )} 
     </div>
   )
 }

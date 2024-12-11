@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { MouseEvent } from "react";
 
 type Props = {
@@ -15,17 +17,17 @@ function UnitCounter({ ticketId, unit, onUpdate }: Props) {
 
   const handleMinus = (e: MouseEvent) => {
     e.stopPropagation();
-    
+
     if (unit > 0) onUpdate(ticketId, unit - 1);
   }
 
   return (
     <div style={{ display: "flex", gap: "0.5rem"}}>
-      <button onClick={handlePlus}>+</button>
+      <Button onClick={handlePlus}>+</Button>
 
-      <input type="number" size={10} readOnly value={unit} />
+      <Input type="number" size={10} readOnly value={unit} />
 
-      <button onClick={handleMinus}>-</button>
+      <Button onClick={handleMinus}>-</Button>
     </div>
   )
 }

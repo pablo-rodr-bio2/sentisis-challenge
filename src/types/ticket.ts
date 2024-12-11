@@ -10,4 +10,5 @@ export type Ticket = {
   type: TicketType,
   releaseDate: number,
   price: number,
+  description: string,
 }
