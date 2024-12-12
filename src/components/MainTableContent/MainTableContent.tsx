@@ -1,12 +1,48 @@
-import { Ticket } from "@/types/ticket"
-import { flexRender, Table } from "@tanstack/react-table"
+import UnitCounter from "@/components/UnitCounter/UnitCounter"
+import { StoredTicket, Ticket } from "@/types/ticket"
+import getUnitByTicketId from "@/utils/get-unit-by-ticked-id"
+import { flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
+import { useMemo } from "react"
 
 type Props = {
-  table: Table<Ticket>
+  tickets: Ticket[];
+  unitStore: StoredTicket[];
+  updateUnit: (ticket: Ticket, newUnit: number) => void;
   onRowClick: (ticket: Ticket) => void
 }
 
-function MainTableContent({ table, onRowClick } : Props) {
+function MainTableContent({ tickets, unitStore, updateUnit, onRowClick } : Props) {
+  const columns = useMemo(
+    () => [
+      { header: "Name", accessorKey: "title" },
+      { header: "Type", accessorKey: "type" },
+      { header: "Release Date", accessorKey: "releaseDate", },
+      {
+        header: "Unit",
+        cell: (info: any) => {
+          const ticket = info.row.original;
+          const unit = getUnitByTicketId(unitStore, ticket.id);
+
+          return (
+            <UnitCounter 
+              ticket={ticket}
+              unit={unit}
+              onUpdate={updateUnit}
+            />
+          )          
+        }
+      },
+      { header: "Price", accessorKey: "price" },
+    ],
+    [unitStore]
+  );
+
+  const table = useReactTable({
+    columns,
+    data: tickets,
+    getCoreRowModel: getCoreRowModel(),
+  })
+  
   return (
     <table className="table-auto w-full">
         <thead className="bg-gray-200">
