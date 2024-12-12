@@ -17,7 +17,7 @@ function CartContent({ unitStore } : Props) {
         </div>
       ))}
 
-      <div>
+      <div className='mt-4 font-extrabold'>
         Total: €
           {sortedUnitStore.reduce((total, item) => {
             return total + item.ticket.price * item.unit;

@@ -13,13 +13,13 @@ function CartContainer() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Cart</Button>
+        <Button className="text-3xl h-14 p-10">Cart</Button>
       </DialogTrigger>
 
       <DialogContent className="[&>button]:hidden">   
           <DialogTitle>Cart</DialogTitle>
 
-          <DialogDescription>Here are your selected tickets</DialogDescription>
+          <DialogDescription>Check your selected tickets, subtotals and total price</DialogDescription>
 
           <CartContent unitStore={unitStore}/>
       </DialogContent>    

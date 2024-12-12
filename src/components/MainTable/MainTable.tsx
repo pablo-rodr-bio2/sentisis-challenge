@@ -65,6 +65,10 @@ function MainTable({ tickets }: Props) {
 
   return (
     <div className="flex flex-col gap-6 items-center  min-h-screen">
+      <h1 className="mb-4 text-4xl font-extrabold">
+        Choose your Tickets
+      </h1>
+
       <MainTableContent
         table={table}
         onRowClick={handleRowClick}

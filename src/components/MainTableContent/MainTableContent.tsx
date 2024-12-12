@@ -8,8 +8,8 @@ type Props = {
 
 function MainTableContent({ table, onRowClick } : Props) {
   return (
-    <table>
-        <thead>
+    <table className="table-auto w-full">
+        <thead className="bg-gray-200">
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map(header => (
@@ -29,10 +29,10 @@ function MainTableContent({ table, onRowClick } : Props) {
             <tr 
               key={row.id} 
               onClick={() => onRowClick(row.original)} 
-              className="cursor-pointer"
+              className="cursor-pointer hover:bg-gray-100"
             >
               {row.getVisibleCells().map(cell => (
-                <td key={cell.id}>
+                <td key={cell.id} className="p-2 border-b">
                   {flexRender(
                     cell.column.columnDef.cell, 
                     cell.getContext()
