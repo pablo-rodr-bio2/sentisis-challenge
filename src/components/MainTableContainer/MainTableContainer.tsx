@@ -5,11 +5,11 @@ function MainTableContainer() {
   const { tickets, isLoading, error } = useFetchTickets()
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <div data-testid="main-table-container-loading">Loading...</div>
   }
 
   if(error) {
-    return <div>Error: {error.message}</div>
+    return <div data-testid="main-table-container-error">Error: {error.message}</div>
   }
 
   return (

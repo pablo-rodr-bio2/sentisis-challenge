@@ -1,15 +1,13 @@
-import CartContent from "@/components/CartContent/CartContent"
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { useUnitStoreContext } from "@/context/UnitStoreContext"
+import CartContent from "@/components/CartContent/CartContent";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { StoredTicket } from "@/types/ticket";
 
-function CartContainer() {
-  const { unitStore } = useUnitStoreContext()
+type Props = {
+  unitStore: StoredTicket[];
+}
 
-  if(!unitStore.length) {
-    return undefined
-  }
-  
+function CartContainer({ unitStore } : Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>

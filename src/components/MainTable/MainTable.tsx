@@ -1,7 +1,7 @@
 import CartContainer from "@/components/CartContainer/CartContainer";
 import MainTableContent from "@/components/MainTableContent/MainTableContent";
 import TicketDialog from "@/components/TicketDialog/TicketDialog";
-import { useUnitStoreContext } from "@/context/UnitStoreContext";
+import useUnits from "@/hooks/useUnits";
 import getUnitByTicketId from "@/utils/get-unit-by-ticked-id";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
@@ -13,7 +13,7 @@ type Props = {
 }
 
 function MainTable({ tickets }: Props) {
-  const { unitStore, updateUnit } = useUnitStoreContext()
+  const { unitStore, updateUnit } = useUnits()
   const [ selectedTicket, setSelectedTicket ] = useState<Ticket | null>(null);
 
   const columns = useMemo(
@@ -74,7 +74,7 @@ function MainTable({ tickets }: Props) {
         onRowClick={handleRowClick}
       />
 
-      <CartContainer />
+      {unitStore.length > 0 && <CartContainer unitStore={unitStore}/>}
 
       {selectedTicket && (
         <TicketDialog
