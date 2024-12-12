@@ -1,17 +1,19 @@
-export function getUnitsFromSessionStorage() {
+import { StoredTicket } from "@/types/ticket";
+
+export function getUnitStoreFromSessionStorage() {
   try {
-    const units = sessionStorage.getItem("units")
-    return units ? JSON.parse(units) : {}
+    const unitStore = sessionStorage.getItem("unitStore")
+    return unitStore ? JSON.parse(unitStore) : []
   } catch (error) {
     console.error(error)
-    return {}
+    return []
   }
 }
 
-export function setUnitsToSessionStorage(units: Record<string, number>) {
+export function setUnitStoreToSessionStorage(unitStore: StoredTicket[]) {
   try {
-    sessionStorage.setItem("units", JSON.stringify(units))
+    sessionStorage.setItem("unitStore", JSON.stringify(unitStore));
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 }

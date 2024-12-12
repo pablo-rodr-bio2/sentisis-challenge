@@ -12,3 +12,8 @@ export type Ticket = {
   price: number,
   description: string,
 }
+
+export type StoredTicket = {
+  ticketId: string;
+  unit: number;
+}

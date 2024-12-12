@@ -1,5 +1,6 @@
 import MainTableContent from "@/components/MainTableContent/MainTableContent";
 import TicketDialog from "@/components/TicketDialog/TicketDialog";
+import getUnitByTicketId from "@/utils/get-unit-by-ticked-id";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
 import useUnits from "../../hooks/useUnits";
@@ -11,7 +12,7 @@ type Props = {
 }
 
 function MainTable({ tickets }: Props) {
-  const { units, updateUnit } = useUnits()
+  const { unitStore, updateUnit } = useUnits()
   const [ selectedTicket, setSelectedTicket ] = useState<Ticket | null>(null);
 
   const columns = useMemo(
@@ -32,10 +33,12 @@ function MainTable({ tickets }: Props) {
         header: "Unit",
         cell: (info: any) => {
           const ticket = info.row.original;
+          const unit = getUnitByTicketId(unitStore, ticket.id);
+
           return (
             <UnitCounter 
               ticketId={ticket.id}
-              unit={units[ticket.id] || 0}
+              unit={unit}
               onUpdate={updateUnit}
             />
           )          
@@ -46,7 +49,7 @@ function MainTable({ tickets }: Props) {
         accessorKey: "price",
       },
     ],
-    [units]
+    [unitStore]
   );
 
   const table = useReactTable({
@@ -67,10 +70,10 @@ function MainTable({ tickets }: Props) {
       />
 
       {selectedTicket && (
-        <TicketDialog 
+        <TicketDialog
           ticket={selectedTicket}
           onChange={setSelectedTicket}
-          unit={units[selectedTicket.id] || 0}
+          unit={getUnitByTicketId(unitStore, selectedTicket.id)}
           updateUnit={updateUnit}
         />
       )} 

@@ -1,24 +1,36 @@
-import { useEffect, useState } from "react"
-import { getUnitsFromSessionStorage, setUnitsToSessionStorage } from "../utils/session-storage"
+import { StoredTicket } from "@/types/ticket";
+import { useEffect, useState } from "react";
+import { getUnitStoreFromSessionStorage, setUnitStoreToSessionStorage } from "../utils/session-storage";
 
 function useUnits() {
-  const [ units, setUnits ] = useState<Record<string, number>>(
-    getUnitsFromSessionStorage()
-  )
+  const [unitStore, setUnitStore] = useState<StoredTicket[]>(
+    getUnitStoreFromSessionStorage()
+  );
 
   useEffect(() => {
-    setUnitsToSessionStorage(units)
-  }, [units])
+    setUnitStoreToSessionStorage(unitStore);
+  }, [unitStore]);
 
   const updateUnit = (ticketId: string, newUnit: number) => {
-    setUnits(prevUnits => ({
-      ...prevUnits,
-      [ticketId]: newUnit,
-    }))
+    setUnitStore(prevUnitStore => {
+      if (newUnit === 0) {
+        return prevUnitStore.filter((item) => item.ticketId !== ticketId);
+      }
+
+      const existingIndex = prevUnitStore.findIndex((item) => item.ticketId === ticketId);
+
+      if (existingIndex === -1) {
+        return [...prevUnitStore, { ticketId, unit: newUnit }];
+      }
+
+      return prevUnitStore.map((item, index) => 
+        index === existingIndex ? { ...item, unit: newUnit } : item
+      );      
+    })
   }
 
   return {
-    units,
+    unitStore,
     updateUnit,
   }
 }
