@@ -1,9 +1,9 @@
 import MainTableContent from "@/components/MainTableContent/MainTableContent";
 import TicketDialog from "@/components/TicketDialog/TicketDialog";
+import { useUnitStoreContext } from "@/context/UnitStoreContext";
 import getUnitByTicketId from "@/utils/get-unit-by-ticked-id";
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
-import useUnits from "../../hooks/useUnits";
 import { Ticket } from "../../types/ticket";
 import UnitCounter from "../UnitCounter/UnitCounter";
 
@@ -12,7 +12,7 @@ type Props = {
 }
 
 function MainTable({ tickets }: Props) {
-  const { unitStore, updateUnit } = useUnits()
+  const { unitStore, updateUnit } = useUnitStoreContext()
   const [ selectedTicket, setSelectedTicket ] = useState<Ticket | null>(null);
 
   const columns = useMemo(

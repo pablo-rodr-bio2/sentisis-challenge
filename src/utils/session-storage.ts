@@ -13,6 +13,7 @@ export function getUnitStoreFromSessionStorage() {
 export function setUnitStoreToSessionStorage(unitStore: StoredTicket[]) {
   try {
     sessionStorage.setItem("unitStore", JSON.stringify(unitStore));
+    console.log("setted")
   } catch (error) {
     console.error(error);
   }
