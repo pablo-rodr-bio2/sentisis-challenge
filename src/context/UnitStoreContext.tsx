@@ -1,10 +1,10 @@
 import useUnits from "@/hooks/useUnits";
-import { StoredTicket } from "@/types/ticket";
+import { StoredTicket, Ticket } from "@/types/ticket";
 import { createContext, ReactNode, useContext } from "react";
 
 type UnitStoreContextType = {
   unitStore: StoredTicket[];
-  updateUnit: (ticketId: string, newUnit: number) => void;
+  updateUnit: (ticket: Ticket, newUnit: number) => void;
 };
 
 const UnitStoreContext = createContext<UnitStoreContextType | undefined>(undefined);

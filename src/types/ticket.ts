@@ -4,6 +4,10 @@ enum TicketType {
   MUSICAL = "musical",
 }
 
+enum Currency {
+  EUR = "euro", 
+}
+
 export type Ticket = {
   id: string,
   title: string,
@@ -11,9 +15,10 @@ export type Ticket = {
   releaseDate: number,
   price: number,
   description: string,
+  currency: Currency,
 }
 
 export type StoredTicket = {
-  ticketId: string;
+  ticket: Ticket;
   unit: number;
 }

@@ -1,3 +1,4 @@
+import CartContainer from "@/components/CartContainer/CartContainer";
 import MainTableContent from "@/components/MainTableContent/MainTableContent";
 import TicketDialog from "@/components/TicketDialog/TicketDialog";
 import { useUnitStoreContext } from "@/context/UnitStoreContext";
@@ -37,7 +38,7 @@ function MainTable({ tickets }: Props) {
 
           return (
             <UnitCounter 
-              ticketId={ticket.id}
+              ticket={ticket}
               unit={unit}
               onUpdate={updateUnit}
             />
@@ -63,11 +64,13 @@ function MainTable({ tickets }: Props) {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex flex-col gap-6 items-center  min-h-screen">
       <MainTableContent
         table={table}
         onRowClick={handleRowClick}
       />
+
+      <CartContainer />
 
       {selectedTicket && (
         <TicketDialog

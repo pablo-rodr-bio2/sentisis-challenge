@@ -1,31 +1,38 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Ticket } from "@/types/ticket";
 import { MouseEvent } from "react";
 
 type Props = {
-  ticketId: string;
+  ticket: Ticket;
   unit: number;
-  onUpdate: (ticketId: string, newUnit: number) => void;
+  onUpdate: (ticket: Ticket, newUnit: number) => void;
 };
 
-function UnitCounter({ ticketId, unit, onUpdate }: Props) {
+function UnitCounter({ ticket, unit, onUpdate }: Props) {
   const handlePlus = (e: MouseEvent) => {
     e.stopPropagation();
 
-    onUpdate(ticketId, unit + 1)
+    onUpdate(ticket, unit + 1)
   }
 
   const handleMinus = (e: MouseEvent) => {
     e.stopPropagation();
 
-    if (unit > 0) onUpdate(ticketId, unit - 1);
+    if (unit > 0) onUpdate(ticket, unit - 1);
   }
 
   return (
     <div className="flex gap-2">
       <Button onClick={handlePlus}>+</Button>
 
-      <Input type="number" size={10} readOnly value={unit} />
+      <Input 
+        type="number" 
+        onClick={(e) => e.stopPropagation()} 
+        size={10} 
+        readOnly 
+        value={unit} 
+      />
 
       <Button onClick={handleMinus}>-</Button>
     </div>

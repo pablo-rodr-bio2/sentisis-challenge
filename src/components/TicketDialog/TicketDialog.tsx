@@ -6,13 +6,13 @@ type Props = {
   ticket: Ticket
   onChange: (ticket: Ticket | null) => void,
   unit: number,
-  updateUnit: (ticketId: string, unit: number) => void,
+  updateUnit: (ticketId: Ticket, unit: number) => void,
 }
 function TicketDialog({ ticket, onChange, unit, updateUnit }: Props) {
   const handleOpenChange = () => onChange(null);
 
   const handleIncrement = () => {
-    updateUnit(ticket.id, unit + 1);
+    updateUnit(ticket, unit + 1);
 
     onChange(null);
   };

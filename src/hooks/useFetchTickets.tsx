@@ -14,14 +14,14 @@ export default function useFetchTickets() {
 
   //REFACTOR
   const formattedData = data
-  ?.sort((a: Ticket, b: Ticket) => b.releaseDate - a.releaseDate)
-  .map((ticket: Ticket) => ({
-    ...ticket,
-    releaseDate: new Date(ticket.releaseDate).toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    }),
+    ?.sort((a: Ticket, b: Ticket) => b.releaseDate - a.releaseDate)
+    .map((ticket: Ticket) => ({
+      ...ticket,
+      releaseDate: new Date(ticket.releaseDate).toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      }),
   }));
 
   return { 
