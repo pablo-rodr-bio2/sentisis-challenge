@@ -1,10 +1,10 @@
-enum TicketType {
+export enum TicketType {
   SHOW = "show",
   TALK = "talk",
   MUSICAL = "musical",
 }
 
-enum Currency {
+export enum Currency {
   EUR = "euro", 
 }
 
