@@ -11,7 +11,7 @@ function CartContainer({ unitStore } : Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="text-3xl h-14 p-10">Cart</Button>
+        <Button data-testid="cart-container-button" className="text-3xl h-14 p-10">Cart</Button>
       </DialogTrigger>
 
       <DialogContent className="[&>button]:hidden">   
