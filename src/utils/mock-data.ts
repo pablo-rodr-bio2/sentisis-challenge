@@ -6,7 +6,7 @@ export const mockTickets: Ticket[] = [
     description: "Ticket 1",
     currency: Currency.EUR,
     price: 10,
-    releaseDate: 0,
+    releaseDate: 1555970400000,
     title: "Ticket 1",
     type: TicketType.SHOW,
   },
@@ -15,7 +15,7 @@ export const mockTickets: Ticket[] = [
     description: "Ticket 2",
     currency: Currency.EUR,
     price: 20,
-    releaseDate: 0,
+    releaseDate: 1634680800000,
     title: "Ticket 2",
     type: TicketType.SHOW,
   }

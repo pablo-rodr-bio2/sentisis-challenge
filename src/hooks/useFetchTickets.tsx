@@ -1,8 +1,10 @@
+import { DATA_URL } from "@/constants/constants";
+import formatTicketsReleaseDate from "@/utils/format-tickets-release-date";
+import sortTicketsByReleaseDate from "@/utils/sort-tickets.by-release-date";
 import { useQuery } from "@tanstack/react-query";
-import { Ticket } from "../types/ticket";
 
 async function fetchTickets() {
-  const result = await fetch('https://my-json-server.typicode.com/davidan90/demo/tickets');
+  const result = await fetch(DATA_URL);
   return result.json();
 }
 
@@ -12,17 +14,8 @@ export default function useFetchTickets() {
     queryFn: fetchTickets,
   });
 
-  //REFACTOR
-  const formattedData = data
-    ?.sort((a: Ticket, b: Ticket) => b.releaseDate - a.releaseDate)
-    .map((ticket: Ticket) => ({
-      ...ticket,
-      releaseDate: new Date(ticket.releaseDate).toLocaleDateString("en-GB", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      }),
-  }));
+  const sortedData = sortTicketsByReleaseDate(data);
+  const formattedData = formatTicketsReleaseDate(sortedData);
 
   return { 
     tickets: formattedData, 

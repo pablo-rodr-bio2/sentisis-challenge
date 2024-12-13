@@ -1,0 +1,1 @@
+export const DATA_URL = 'https://my-json-server.typicode.com/davidan90/demo/tickets';
