@@ -22,7 +22,7 @@ function TicketDialog({ ticket, onChange, unit, updateUnit }: Props) {
       open={Boolean(ticket)}
       onOpenChange={handleOpenChange}
     >
-      <DialogContent>
+      <DialogContent data-testid="ticket-dialog-root">
         <DialogTitle>{ticket.title}</DialogTitle>
         <DialogDescription>{ticket.description}</DialogDescription>
         <DialogDescription><strong>Type:</strong> {ticket.type}</DialogDescription>

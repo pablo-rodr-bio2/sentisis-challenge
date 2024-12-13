@@ -1,5 +1,6 @@
 import MainTableContainer from "@/components/MainTableContainer/MainTableContainer";
 import useFetchTickets from "@/hooks/useFetchTickets";
+import { mockTickets } from "@/utils/mock-data";
 import { render } from "@testing-library/react";
 import { vi } from "vitest";
 
@@ -45,7 +46,7 @@ describe('MainTableContainer', () => {
   describe('when tickets are present', () => {
     it('should render MainTable with tickets', () => {
       mockUseFetchTickets.mockReturnValue({
-        tickets: [{ id: 1, title: 'Ticket 1' }, { id: 2, title: 'Ticket 2' }],
+        tickets: mockTickets,
         isLoading: false,
         error: null
       });

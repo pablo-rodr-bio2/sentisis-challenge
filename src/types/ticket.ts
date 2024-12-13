@@ -12,7 +12,7 @@ export type Ticket = {
   id: string,
   title: string,
   type: TicketType,
-  releaseDate: number,
+  releaseDate: string,
   price: number,
   description: string,
   currency: Currency,

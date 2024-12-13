@@ -44,7 +44,7 @@ function MainTableContent({ tickets, unitStore, updateUnit, onRowClick } : Props
   })
   
   return (
-    <table className="table-auto w-full">
+    <table className="table-auto w-full" data-testid="main-table-content-root">
         <thead className="bg-gray-200">
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
@@ -69,7 +69,7 @@ function MainTableContent({ tickets, unitStore, updateUnit, onRowClick } : Props
               data-testid="main-table-content-row"
             >
               {row.getVisibleCells().map(cell => (
-                <td key={cell.id} className="p-2 border-b">
+                <td key={cell.id} className="p-2 border-b" data-testid="main-table-content-row-cell">
                   {flexRender(
                     cell.column.columnDef.cell, 
                     cell.getContext()
