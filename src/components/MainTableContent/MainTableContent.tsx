@@ -1,14 +1,14 @@
 import UnitCounter from "@/components/UnitCounter/UnitCounter"
-import { StoredTicket, Ticket } from "@/types/ticket"
+import { ProcessedTicket, StoredTicket } from "@/types/ticket"
 import getUnitByTicketId from "@/utils/get-unit-by-ticked-id"
 import { flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
 import { useMemo } from "react"
 
 type Props = {
-  tickets: Ticket[];
+  tickets: ProcessedTicket[];
   unitStore: StoredTicket[];
-  updateUnit: (ticket: Ticket, newUnit: number) => void;
-  onRowClick: (ticket: Ticket) => void
+  updateUnit: (ticket: ProcessedTicket, newUnit: number) => void;
+  onRowClick: (ticket: ProcessedTicket) => void
 }
 
 function MainTableContent({ tickets, unitStore, updateUnit, onRowClick } : Props) {

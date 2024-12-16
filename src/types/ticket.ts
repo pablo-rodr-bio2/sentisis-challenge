@@ -8,17 +8,21 @@ export enum Currency {
   EUR = "euro", 
 }
 
-export type Ticket = {
+export type ApiTicket = {
   id: string,
   title: string,
   type: TicketType,
-  releaseDate: string,
+  releaseDate: number,
   price: number,
   description: string,
   currency: Currency,
 }
 
+export type ProcessedTicket = Omit<ApiTicket, "releaseDate"> & {
+  releaseDate: string;
+}
+
 export type StoredTicket = {
-  ticket: Ticket;
+  ticket: ProcessedTicket;
   unit: number;
 }

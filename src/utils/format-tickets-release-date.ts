@@ -1,7 +1,7 @@
-import { Ticket } from "@/types/ticket";
+import { ApiTicket } from "@/types/ticket";
 
-export default function formatTicketsReleaseDate(data: Ticket[] = []) {
-  return data.map((ticket: Ticket) => ({
+export default function formatTicketsReleaseDate(data: ApiTicket[] = []) {
+  return data.map((ticket: ApiTicket) => ({
     ...ticket,
     releaseDate: new Date(ticket.releaseDate).toLocaleDateString("en-GB", {
       day: "2-digit",

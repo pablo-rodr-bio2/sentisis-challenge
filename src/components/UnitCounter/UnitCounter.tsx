@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Ticket } from "@/types/ticket";
+import { ProcessedTicket } from "@/types/ticket";
 import { MouseEvent } from "react";
 
 type Props = {
-  ticket: Ticket;
+  ticket: ProcessedTicket;
   unit: number;
-  onUpdate: (ticket: Ticket, newUnit: number) => void;
+  onUpdate: (ticket: ProcessedTicket, newUnit: number) => void;
 };
 
 function UnitCounter({ ticket, unit, onUpdate }: Props) {

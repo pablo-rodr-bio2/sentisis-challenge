@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogTitle } from "@/components/ui/dialog";
-import { Ticket } from "@/types/ticket";
+import { ProcessedTicket } from "@/types/ticket";
 
 type Props = {
-  ticket: Ticket
-  onChange: (ticket: Ticket | null) => void,
+  ticket: ProcessedTicket
+  onChange: (ticket: ProcessedTicket | null) => void,
   unit: number,
-  updateUnit: (ticketId: Ticket, unit: number) => void,
+  updateUnit: (ticketId: ProcessedTicket, unit: number) => void,
 }
 function TicketDialog({ ticket, onChange, unit, updateUnit }: Props) {
   const handleOpenChange = () => onChange(null);
