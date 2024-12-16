@@ -1,7 +1,7 @@
 import UnitCounter from "@/components/UnitCounter/UnitCounter"
 import { ProcessedTicket, StoredTicket } from "@/types/ticket"
 import getUnitByTicketId from "@/utils/get-unit-by-ticked-id"
-import { flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
+import { CellContext, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table"
 import { useMemo } from "react"
 
 type Props = {
@@ -19,7 +19,7 @@ function MainTableContent({ tickets, unitStore, updateUnit, onRowClick } : Props
       { header: "Release Date", accessorKey: "releaseDate", },
       {
         header: "Unit",
-        cell: (info: any) => {
+        cell: (info: CellContext<ProcessedTicket, unknown>) => {
           const ticket = info.row.original;
           const unit = getUnitByTicketId(unitStore, ticket.id);
 
@@ -34,7 +34,7 @@ function MainTableContent({ tickets, unitStore, updateUnit, onRowClick } : Props
       },
       { header: "Price", accessorKey: "price" },
     ],
-    [unitStore]
+    [unitStore, updateUnit]
   );
 
   const table = useReactTable({

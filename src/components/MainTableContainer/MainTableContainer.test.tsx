@@ -1,5 +1,6 @@
 import MainTableContainer from "@/components/MainTableContainer/MainTableContainer";
 import useFetchTickets from "@/hooks/useFetchTickets";
+import { ProcessedTicket } from "@/types/ticket";
 import { mockTickets } from "@/utils/mock-data";
 import { render } from "@testing-library/react";
 import { vi } from "vitest";
@@ -7,7 +8,7 @@ import { vi } from "vitest";
 vi.mock('@/hooks/useFetchTickets');
 
 vi.mock("../MainTable/MainTable", () => ({
-  default: ({ tickets }: { tickets: any }) => (
+  default: ({ tickets }: { tickets: ProcessedTicket[] }) => (
     <div data-testid="main-table">{tickets.length} tickets</div>
   ),
 }));
