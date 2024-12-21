@@ -4,17 +4,17 @@ import TicketDialog from "@/components/TicketDialog/TicketDialog";
 import useUnits from "@/hooks/useUnits";
 import getUnitByTicketId from "@/utils/get-unit-by-ticked-id";
 import { useState } from "react";
-import { Ticket } from "../../types/ticket";
+import { ProcessedTicket } from "../../types/ticket";
 
 type Props = {
-  tickets: Ticket[]
+  tickets: ProcessedTicket[]
 }
 
 function MainTable({ tickets }: Props) {
   const { unitStore, updateUnit } = useUnits()
-  const [ selectedTicket, setSelectedTicket ] = useState<Ticket | null>(null);
+  const [ selectedTicket, setSelectedTicket ] = useState<ProcessedTicket | null>(null);
 
-  const handleRowClick = (ticket: Ticket) => {
+  const handleRowClick = (ticket: ProcessedTicket) => {
     setSelectedTicket(ticket);
   };
 
